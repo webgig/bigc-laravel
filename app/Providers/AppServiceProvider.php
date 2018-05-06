@@ -34,18 +34,18 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(
             'App\Repositories\ICustomerRepository',
-            'App\Repositories\Impl\BigCCustomerRepository'
+            'App\Repositories\Impl\BigcommerceCustomerRepository'
         );
 
         $this->app->bind(
             'App\Repositories\IOrderRepository',
-            'App\Repositories\Impl\BigCOrderRepository'
+            'App\Repositories\Impl\BigcommerceOrderRepository'
         );
 
 
         $this->app->bind(
             'App\Services\ICustomerService',
-            'App\Services\Impl\BigCCustomerService'
+            'App\Services\Impl\BigcommerceCustomerService'
         );
     }
 }

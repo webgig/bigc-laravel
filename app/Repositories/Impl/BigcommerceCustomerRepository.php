@@ -7,7 +7,7 @@ use Bigcommerce\Api\Client as Bigcommerce;
 use Illuminate\Support\Collection;
 
 
-class BigCCustomerRepository extends AbstractBigCRepository implements ICustomerRepository
+class BigcommerceCustomerRepository extends AbstractBigcommerceRepository implements ICustomerRepository
 {
 
   public function get($customer_id)

@@ -5,7 +5,7 @@ use App\Repositories\IOrderRepository;
 use App\Entities\Order as OrderEntity;
 
 
-class BigCOrderRepository extends AbstractBigCRepository  implements IOrderRepository
+class BigcommerceOrderRepository extends AbstractBigcommerceRepository  implements IOrderRepository
 {
 
   public function get($order_id)
