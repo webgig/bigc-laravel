@@ -13,9 +13,16 @@
         </thead>
         <tbody>
             {{-- Details go here --}}
+            @foreach ($customer->orders as $order)
+                <tr>
+                    <td>{{ $order->date_created}}</td>
+                    <td>{{ $order->items_total}}</td>
+                    <td>{{ $order->currency_code}} {{ $order->total}}</td>
+                </tr>
+            @endforeach    
             <tr>
                 <td colspan="2">Lifetime Value</td>
-                <td>${{ $lifeTimeValue }}</td>
+                <td>{{ $lifeTimeValue }}</td>
             </tr>
         </tbody>
     </table>

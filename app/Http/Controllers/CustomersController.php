@@ -19,9 +19,9 @@ class CustomersController extends BaseController
 
     public function index()
     {
-      $customers = $this->_customerService->list();
-
-
-      return view('customers');
+      // Retrieve Customer List
+      $customers = $this->_customerService->listAllCustomers();
+    
+      return view('customers',['customers' => $customers]);
     }
 }

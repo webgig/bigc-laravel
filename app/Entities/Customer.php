@@ -1,10 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Entities;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Customer extends AbstractApi
 {
-    //
+  // Entity Attributes
+  private $_attributes = ["id","first_name","last_name","order_count","orders"];
+
 }

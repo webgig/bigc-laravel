@@ -2,43 +2,45 @@
 namespace App\Repositories\Impl;
 
 use App\Repositories\ICustomerRepository;
-
+use App\Entities\Customer as CustomerEntity;
 use Bigcommerce\Api\Client as Bigcommerce;
+use Illuminate\Support\Collection;
 
 
-
-class BigCCustomerRepository implements ICustomerRepository
+class BigCCustomerRepository extends AbstractBigCRepository implements ICustomerRepository
 {
-
-  // public function __construct()
-  // {
-  // }
 
   public function get($customer_id)
   {
+    if(!$customer_id)
+    {
+      throw new \Exception("Customer Id Not Provided");
+    }
 
-    $customer = Bigcommerce::getCustomer($customer_id);
+    $customer = $this->_Bigcommerce::getCustomer($customer_id);
 
+    if(!$customer)
+    {
+      throw new Exception("Customers Not Found");
+    }
     // Transform to model;
-
+    return  CustomerEntity::create(['id'=>$customer->id,'first_name' => $customer->first_name, 'last_name' => $customer->last_name]);
   }
 
 
   public function all()
-  {
+  { 
+    $customers =  $this->_Bigcommerce::getCustomers();
+    $allCustomers = [];
     
-    $customers = Bigcommerce::getCustomers();
-
-    // Transform to model;
+    if(!$customers)
+    {
+      throw new \Exception("Customers Not Found");
+    }
+    foreach ($customers as $key => $customer) {
+      $allCustomers[] = CustomerEntity::create(['id'=>$customer->id,'first_name' => $customer->first_name, 'last_name' => $customer->last_name]);
+    }
     
-    return $customers;
+    return $allCustomers;
   }
-
-
-
-
-
-
 }
-
-

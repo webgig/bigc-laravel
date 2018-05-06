@@ -1,10 +1,9 @@
 <?php
+namespace App\Entities;
 
-namespace App;
-
-use Illuminate\Database\Eloquent\Model;
-
-class Order extends Model
+class Order extends AbstractApi
 {
-    //
+  // Order Entities
+  private $_attributes = ["id","customer_id","date_created","total","currency_code","payment_method","items_total"];
+
 }

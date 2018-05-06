@@ -3,14 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
+use \App\Services\ICustomerService as CustomerService;
 
 class CustomerDetailsController extends BaseController
-{
-    public function show($id)
+{   
+    
+    private $_customerService;
+
+    public function __construct(CustomerService $customerService)
     {
+
+      $this->_customerService = $customerService;
+    }
+    
+    public function show($id)
+    {   
+        // Retrieve Customer Details
+        $customer = $this->_customerService->getCustomer($id);
+        
+        // Calculate Lifetime value
+        $lifeTimeValue = $this->_customerService->calculateLifetimeValue($customer->orders);
+
         return view('details', [
-            'customer' => null,
-            'lifeTimeValue' => 100,
+            'customer' => $customer,
+            'lifeTimeValue' => $lifeTimeValue,
         ]);
     }
 }
